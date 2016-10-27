@@ -1,0 +1,14 @@
+
+to-do: 
+	+ service boxes
+	+ testimonials
+	+ contact form
+	+ responsive / mobile
+	+ detailing - add some extra flavor and life to the site
+
+	+ move site to production environment
+
+- move image button title into image.
+- make link color more noticeable
+- remove hover effect on services (doesnt go anywhere)
+- remove highlight color (or change it)
