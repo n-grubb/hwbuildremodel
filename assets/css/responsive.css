@@ -1,0 +1,96 @@
+/* tablet */
+@media (max-width: 900px) {
+    .header-menu nav a {
+        font-size: 14px;
+        padding: 1.5rem .5rem;
+    }
+}
+
+
+@media (max-width: 824px) {
+    html {
+        font-size: 14px;
+    }
+
+    .page-header {
+        padding: 1rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2em;
+    }
+
+    .header-menu nav {
+        display: none;
+    }
+
+    .header-menu button {
+        font-size: 1.25rem;
+    }
+
+    #contact form { 
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-content img {
+        max-height: 60%;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5em;
+    }
+
+    .service-box {
+        width: 100%;
+    }
+
+    #contact form { 
+        padding: 2rem;
+        gap: 1rem;
+    }
+
+    .form-field {
+        grid-template: auto auto / 1fr;
+        gap: 0;
+    }
+}
+
+/* mobile */
+@media (max-width: 470px) {
+    html {
+        font-size: 12px;
+    }
+
+    .page-header {
+        /* padding: 1.5rem .5rem; */
+    }
+
+    .header-logo img {
+        height: 3rem;
+        /* min-height: 100%; */
+        /* height: 100%; */
+    }
+
+    /* todo: adjust header */
+
+    .hero-content h2 {
+        font-size: 1em;
+    }
+
+    #contact {
+        padding: 2rem 1rem;
+    }
+    
+    #contact form { 
+        padding: 1rem;
+    }
+}
+
+
+@media (max-width: 370px) {
+    .header-menu button {
+        font-size: 1rem;
+    }
+}
