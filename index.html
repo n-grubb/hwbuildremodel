@@ -9,8 +9,7 @@
 		Pennsylvania area."/>
 	<link rel="canonical" href="http://hwbuildremodel.com/"/>
 	<link rel="stylesheet" href="./assets/css/main.css" type="text/css" media="all"/>	
-  <link rel="stylesheet" href="./assets/css/responsive.css" type="text/css" media="all"/>
-	<link rel="stylesheet" href="./assets/css/print.css" type="text/css" media="print"/>
+  	<link rel="stylesheet" href="./assets/css/responsive.css" type="text/css" media="all"/>
 	<script src="https://kit.fontawesome.com/90bd15407f.js" crossorigin="anonymous"></script>
 </head>
 
@@ -27,10 +26,10 @@
 			<a href="#testimonials">Testimonials</a>
 			<a href="#contact">Contact Us</a>
 		</nav>
-		<button class="call-button" href="tel:4846512337">
+		<a class="call-button" href="tel:4846512337">
 			<i class="fas fa-phone-square-alt"></i>
 			Call Us Today! 484-651-2337
-		</button>
+		</a>
 	</div>
 </header>
 
@@ -140,6 +139,12 @@
 		</p>
 		<!-- TODO: hookup to vercel edge function -->		
 		<form method="post">
+			<div class="form-message success-message">
+				<p>Thanks for your submission, we will reach out to you soon!</p>
+			</div>
+			<div class="form-message error-message">
+				<p>There was a problem saving your submission. Please try again or send an email to <a href="mail:info@hwbuildremodel.com" target="_blank">info@hwbuildremodel.com</a>.</p>
+			</div>
 			<div class="form-field">
 				<label for="firstname">First Name<em class="req">*</em></label>
 				<input type="text" id="firstname" name="firstname" size="40" required="true" placeholder="First Name"/>
@@ -154,7 +159,7 @@
 			</div>
 			<div class="form-field">
 				<label for="phone">Phone<em class="req">*</em></label>
-				<input type="text" id="phone" name="phone" size="40" required="true" placeholder="Your phone number"/>
+				<input type="text" id="phone" name="phone" size="40" placeholder="Your phone number"/>
 			</div>
 			<div class="form-field">
 				<label for="comments">Message</label>
@@ -186,5 +191,53 @@
 </footer>
 
 <script type="text/javascript" src='./assets/js/wc-carousel-lite.min.js'></script>
+<script>
+	// setup contact form. 
+	document.querySelector('#contact form').addEventListener('submit', async (e) => {
+		e.preventDefault();
+		const submitButton = document.querySelector('#contact button[type="submit"]')
+		
+		// remove any past validation messages 
+		document.querySelector('#contact .error-message').style.display = 'none';
+		document.querySelector('#contact .success-message').style.display = 'none';
+
+		// add loading state
+		submitButton.disabled = true
+		submitButton.innerHTML = 'Sending...';
+		
+		// get form data
+		const form = document.querySelector('#contact form');
+		const formData = new FormData(form);
+		const email = formData.get('email')
+		const firstname = formData.get('firstname')
+		const lastname = formData.get('lastname')
+		const phone = formData.get('phone')
+		const comments = formData.get('comments')
+
+		const res = await fetch("/api/contact", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				firstname,
+				lastname,
+				email,
+				phone, 
+				message: comments
+			}),
+		});
+
+		const {error} = await res.json();
+		if (error) {
+			document.querySelector('#contact .error-message').style.display = 'block';			
+		} else {
+			document.querySelector('#contact .success-message').style.display = 'block' ;
+		}
+
+		submitButton.disabled = false
+		submitButton.innerHTML = 'Submit';
+		document.querySelector('#contact').scrollIntoView();
+	});
+
+</script>
 </body>
 </html>

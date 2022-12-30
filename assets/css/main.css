@@ -153,10 +153,16 @@ a:hover {
 
 .call-button {
 	padding: .5rem .75rem;
-	border: none;
+	border: 1px solid transparent;
 	border-radius: 4px;
 	background: var(--accent);
 	line-height: 1;
+	text-decoration: none;
+}
+
+.call-button:hover {
+	color: black;
+	border-color: black;
 }
 
 /* Hero */
@@ -333,6 +339,27 @@ wc-carousel-lite {
 	justify-content: center;
 	align-items: flex-start;
 	gap: 1.5rem;
+}
+
+.form-message {
+	display: none;
+	width: 100%;
+	padding: .75rem 1rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: 8px;
+}
+
+.form-message p {
+	margin-bottom: 0;
+}
+
+.error-message {
+	border-color: red;
+}
+
+.success-message {
+	border-color: green;
 }
 
 .form-field {
